@@ -1,0 +1,12 @@
+valueX1;Schas1;i;5;0.0;999.9;Stk
+valueX2;Schas1.2;i;5;0.0;999.9;Stk
+valueY1;schas 3;null;0;0.0;100.0;Stk
+valueY2;schas 3.2;null;0;0.0;100.0;Stk
+valueTemp1;Temperatur 1;null;0;2.0;25.0;°C
+valueTemp2;Temperatur 2;null;0.0;0.3;99.7;°C
+valueTemp3;Temperatur 3;d;9.0;0.0;100.0;°C
+valueTemp4;Temperatur 4;d;9.8;0.0;200.0;°C
+valueTimer1Start;Timer 1 start;null;00:00:00;0.0;0.0;Uhr
+valueTimer1Stop;Timer 1 stopp;null;00:00:00;0.0;0.0;Uhr
+valueBool1;Schalter 1;b;true;0.0;0.0;
+valueTemp5;Sollwert xy;b;true;2.0;25.0;°C

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" version="2.4"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http:/java.sun.com/dtd/web-app_2_3.dtd">
+         
+	<welcome-file-list> 
+		<welcome-file>page/index.jsp</welcome-file> 
+	</welcome-file-list> 
+
+  	<display-name>Schas</display-name>
+
+  	
+  	
+  	<servlet>
+    	<servlet-name>WebIfServlet</servlet-name>
+    	<servlet-class>servlet.WebIfServlet</servlet-class>
+  	</servlet>
+
+  	<!-- Map URLs to that servlet. -->
+  	<servlet-mapping>
+    	<servlet-name>WebIfServlet</servlet-name>
+    	<url-pattern>/servlet</url-pattern>
+  	</servlet-mapping>
+</web-app>
+
