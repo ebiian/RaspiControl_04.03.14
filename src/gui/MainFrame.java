@@ -167,6 +167,16 @@ public class MainFrame implements Observer {
 	MarkPanel markPanel_2;
 
 	private final List<String[]> users = new ArrayList<String[]>();
+	
+/*	private static LcdPanel INSTANCE1;
+	
+	public static LcdPanel getInstance() {
+	      if(INSTANCE1 == null) {
+	    	  INSTANCE1 = new LcdPanel();
+	       }
+		return INSTANCE1;
+	}	
+*/
 
 	/**
 	 * Launch the application.
@@ -187,6 +197,7 @@ public class MainFrame implements Observer {
 				}
 			}
 		});
+		
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			// @Override
 			@Override
@@ -200,6 +211,8 @@ public class MainFrame implements Observer {
 				}
 			}
 		}, "Stop Jetty Hook"));
+		
+		
 		
 	}
 
@@ -220,12 +233,6 @@ public class MainFrame implements Observer {
 		// assign fields an values
 		initValues();
 
-		//lcd 395
-/*		FrameBuffer   fb = LcdPanel.getInstance();
-		BufferedImage img = fb.getScreen();
-		Graphics2D    g   = img.createGraphics();
-		g.setFont(new Font("Tahoma", Font.PLAIN, 14));
-*/
 		// display actual time
 		TimerTask task = new TimerTask() {
 			Date date = new Date();
@@ -236,13 +243,6 @@ public class MainFrame implements Observer {
 			public void run() {
 				date.setTime(System.currentTimeMillis());
 				labelActualTime.setText(dateFormat.format(date));
-
-				//lcd datum uhrzeit ebenfalls anzeigen:  395
-/*				g.setColor(Color.LIGHT_GRAY);
-				g.fillRect(0, 0, 300, 15);
-				g.setColor(Color.DARK_GRAY);
-				g.fillRect(0, 17, 298, 1);
-				g.drawString((dateFormat.format(date)), 5, 15);*/
 			}
 		};
 		Timer timer = new Timer();
@@ -252,7 +252,7 @@ public class MainFrame implements Observer {
 		switchToManualMode();
 		initWebIfUsers();
 		
-		LcdPanelTest();  //395
+		LcdPanel.getInstanceLcdPanel().LcdPanelTest();  //395
 
 		if (INSTANCE == null)
 			INSTANCE = this;
@@ -1054,90 +1054,5 @@ public class MainFrame implements Observer {
 
 //lcd test ----------------------------------------------------------------------------------	
 
-	public void LcdPanelTest() {
-		
-		FrameBuffer   fb = LcdPanel.getInstance();
-		BufferedImage img = fb.getScreen();
-		Graphics2D    g   = img.createGraphics();
-		int w = img.getWidth();
-		int h = img.getHeight();
-
-		
-		// RenderingHints.VALUE_ANTIALIAS_ON must before rotate !
-		// Rotated font drawing behaves strange without that....
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(0, 0, w, h);
-		int x = 298;
-		int y = 2;
-		
-		//flagge zeigen:
-		g.setColor(Color.RED);
-		g.fillRect(x, y, 20,5);
-		y += 6;
-		g.setColor(Color.WHITE);
-		g.fillRect(x, y, 20,5);
-		y += 6;
-		g.setColor(Color.RED);
-		g.fillRect(x, y, 20,5);
-		y += 6;
-		
-		System.out.println("395: Lcd flagge fertig gezeichnet !");
-			
-		g.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 225, 320, 1);
-		g.drawString("ebiian                            10.3.2014", 2, 238);
-		
-		List<Value> alleParameter = DataHandler.getInstance().getParams();
-
-		TimerTask taskLcd = new TimerTask() {
-			Date date = new Date();
-			SimpleDateFormat dateFormat = new SimpleDateFormat(
-					"dd.MM.yyyy  HH:mm:ss");
-
-			@Override
-			public void run() {
-				date.setTime(System.currentTimeMillis());
-				labelActualTime.setText(dateFormat.format(date));
-
-				g.setColor(Color.LIGHT_GRAY);
-				g.fillRect(0, 0, 298, 15);
-				g.setColor(Color.DARK_GRAY);
-				g.fillRect(0, 17, 298, 1);
-				g.drawString((dateFormat.format(date)), 5, 15);
-				
-				for(Value parameter :alleParameter){
-//					System.out.println("395: "+parameter.getVarName()+" "+parameter.getValue()+parameter.getUnitText());
-					if(parameter.getVarName().equals(valueTemp1.getVarName()))			
-					{
-//						System.out.println("395: gefunden !!!  "+ parameter.getValue().toString());
-						g.setColor(Color.LIGHT_GRAY);
-						g.fillRect(0, 20, 300, 20);
-						g.setColor(Color.DARK_GRAY);
-						g.drawString(parameter.getLongText()+"  "+parameter.getValue().toString()+parameter.getUnitText(), 10, 40);
-
-/*					if(parameter.getValue() instanceof Integer)
-					{
-						parameter.setValue(new Integer(23));
-					
-					}else
-					{
-					if(parameter.getValue() instanceof Double)
-					{
-						parameter.setValue(new Double(23.9));
-						
-					}
-				}*/
-			}
-		}
-			}
-		};
-		Timer timer = new Timer();
-		timer.schedule(taskLcd, 0, 1000);
-		
-		
-	}
 
 }
