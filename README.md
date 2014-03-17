@@ -1,9 +1,14 @@
-raspberry pi with external 2.2" display
+raspberry pi automation controller
+
+with additional external 2.2" LCD display
+
 java controlled
 
 webserver: raspberrypi:8585/piWeb
+
   attention: 1st loading of the webPage needs very very very long !
   some kind of jsp issue ?!?
+  but after this it is fast enough !
 
   
 1) copy the content of "libpi" into the dirctory "/home/pi"
