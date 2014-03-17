@@ -4,7 +4,7 @@ with additional external 2.2" LCD display
 
 java controlled
 
-webserver: raspberrypi:8585/piWeb
+webserver (jetty): raspberrypi:8585/piWeb (login/pw: adminadmin)
 
   attention: 1st loading of the webPage needs very very very long !
   some kind of jsp issue ?!?
