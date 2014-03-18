@@ -16,6 +16,10 @@ import org.tw.pi.framebuffer.FrameBuffer;
 import data.DataHandler;
 import data.types.Value;
 
+import java.awt.Image;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class LcdPanel {
 	private static LcdPanel INSTANCELcdPanel;
@@ -36,7 +40,7 @@ public class LcdPanel {
 		return INSTANCE;
 	}	
 
-	public void LcdPanelTest() {		
+	public void LcdPanelTest() throws IOException {		
 		FrameBuffer   fb = LcdPanel.getInstance();
 		BufferedImage img = fb.getScreen();
 		Graphics2D    g   = img.createGraphics();
@@ -46,6 +50,7 @@ public class LcdPanel {
 		// RenderingHints.VALUE_ANTIALIAS_ON must before rotate !
 		// Rotated font drawing behaves strange without that....
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		
 
 		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(0, 0, w, h);
@@ -64,6 +69,16 @@ public class LcdPanel {
 		y += 6;
 		
 		System.out.println("395: Lcd flagge fertig gezeichnet !");
+		
+        try {
+			Image image = ImageIO.read(LcdPanel.class.getResource("/images/duke.png"));
+			int wi = image.getWidth(null);
+	        int hi = image.getHeight(null);
+	        g.drawImage(image, 50, 50, wi, hi, null);
+			System.out.println("395: duke.png w:"+wi+" hi:"+hi);
+        } catch (IOException ex) {
+			System.out.println("395: duke.png ioexception !");
+        }
 			
 		g.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		g.setColor(Color.DARK_GRAY);

@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -68,7 +69,6 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import constants.Constants;
 import data.DataHandler;
 import data.types.Value;
-
 
 public class MainFrame implements Observer {
 
@@ -220,7 +220,8 @@ public class MainFrame implements Observer {
 	/**
 	 * Create the application.
 	 */
-	public MainFrame() {
+	@SuppressWarnings("static-access")
+	public MainFrame() throws IOException {
 		if (!bWithoutHardware)
 			initGpio();
 		getNewDataHandler();
@@ -252,7 +253,15 @@ public class MainFrame implements Observer {
 		switchToManualMode();
 		initWebIfUsers();
 		
-		LcdPanel.getInstanceLcdPanel().LcdPanelTest();  //395
+		try {
+			LcdPanel.getInstanceLcdPanel().LcdPanelTest();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  //395
+
+//		System.out.println("395: starting now google calendar feed demo !");
+//		sample.calendar.CalendarFeedDemo.getInstanceCalendarFeedDemo().main(new String[] {"ebiianum","pe634bii"});
 
 		if (INSTANCE == null)
 			INSTANCE = this;
