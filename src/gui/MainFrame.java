@@ -261,7 +261,7 @@ public class MainFrame implements Observer {
 		}  //395
 
 //		System.out.println("395: starting now google calendar feed demo !");
-//		sample.calendar.CalendarFeedDemo.getInstanceCalendarFeedDemo().main(new String[] {"ebiianum","pe634bii"});
+//		sample.calendar.CalendarFeedDemo.getInstanceCalendarFeedDemo().main(new String[] {"e","p"});
 
 		if (INSTANCE == null)
 			INSTANCE = this;
